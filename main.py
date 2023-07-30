@@ -38,32 +38,6 @@ dados_anos["year"].unique()
 dados_anos = dados_anos.drop(["key","mode"], axis=1)
 dados_anos.reset_index()
 
-# #--Graficos--#
-# fig = px.line(dados_anos, x="year", y="loudness", markers= True, title='Variação do loudness conforme os anos')
-# fig.show()
-
-# fig = go.Figure()
-
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['acousticness'],
-#                     name='Acousticness'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['valence'],
-#                     name='Valence'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['danceability'],
-#                     name='Danceability'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['energy'],
-#                     name='Energy'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['instrumentalness'],
-#                     name='Instrumentalness'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['liveness'],
-#                     name='Liveness'))
-# fig.add_trace(go.Scatter(x=dados_anos['year'], y=dados_anos['speechiness'],
-#                     name='Speechiness'))
-
-# fig.show()
-
-# fig = px.imshow(dados.corr(), text_auto=True)
-# fig.show()
-
 dados_generos1 = dados_generos.drop('genres', axis=1)
 
 #--cluster por genero--#
@@ -120,16 +94,6 @@ distancias = euclidean_distances(musicas_recomendadas[[0, 1]], [[x_musica, y_mus
 musicas_recomendadas['id'] = dados['id']
 musicas_recomendadas['distancias']= distancias
 recomendada = musicas_recomendadas.sort_values('distancias').head(10)
-
-scope = "user-library-read playlist-modify-private"
-OAuth = SpotifyOAuth(
-        scope=scope,         
-        redirect_uri='http://localhost:5000/callback',
-        client_id = '7695b998110c4978aa5bf63cbb4c2ab4',
-        client_secret = '55c853b17e82499b9bdf1e44af210b13')
-
-client_credentials_manager = SpotifyClientCredentials(client_id = '7695b998110c4978aa5bf63cbb4c2ab4',client_secret = '55c853b17e82499b9bdf1e44af210b13')
-sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
 scope = "user-library-read playlist-modify-private"
 OAuth = SpotifyOAuth(
